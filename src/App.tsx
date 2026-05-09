@@ -9,7 +9,7 @@ import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import type { SectionId } from './types';
 
-const sectionComponents: Record<SectionId, React.ComponentType<{ onNavigate?: (id: SectionId) => void }>> = {
+const sectionComponents: Record<SectionId, React.ComponentType<{ onNavigate: (id: SectionId) => void }>> = {
   dashboard: Dashboard,
   about: About,
   skills: Skills,
@@ -20,6 +20,7 @@ const sectionComponents: Record<SectionId, React.ComponentType<{ onNavigate?: (i
 
 export default function App() {
   const [active, setActive] = useState<SectionId>('dashboard');
+  const [showMore, setShowMore] = useState(false);
 
   const ActiveSection = sectionComponents[active];
 
@@ -50,13 +51,67 @@ export default function App() {
 
       <Sidebar active={active} onChange={setActive} />
 
-      <main className="pl-64 min-h-screen">
-        <div className="max-w-5xl mx-auto px-8 py-8 pb-16">
-          <AnimatePresence mode="sync">
+      <main className="md:pl-64 min-h-screen pb-20">
+        <div className="max-w-5xl mx-auto px-8 py-8">
+          <AnimatePresence mode="wait">
             <ActiveSection key={active} onNavigate={setActive} />
           </AnimatePresence>
         </div>
       </main>
+      {/* ✅ Mobile Bottom Navigation */}
+<div className="md:hidden fixed bottom-0 left-0 w-full bg-[#050514] border-t border-white/10 flex justify-around py-2 z-50">
+
+  <div onClick={() => setActive('dashboard')} className="text-white text-xs flex flex-col items-center">
+    🏠 <span>Home</span>
+  </div>
+
+  <div onClick={() => setActive('about')} className="text-white text-xs flex flex-col items-center">
+    👤 <span>About</span>
+  </div>
+
+  <div onClick={() => setActive('projects')} className="text-white text-xs flex flex-col items-center">
+    📁 <span>Projects</span>
+  </div>
+
+  <div onClick={() => setActive('contact')} className="text-white text-xs flex flex-col items-center">
+    ✉️ <span>Contact</span>
+  </div>
+
+  {/* MORE BUTTON */}
+  <div
+    onClick={() => setShowMore(!showMore)}
+    className="text-white text-xs flex flex-col items-center relative"
+  >
+    ☰ <span>More</span>
+
+    {showMore && (
+      <div className="absolute bottom-14 right-0 bg-[#0b0b1f] border border-white/10 rounded-xl p-2 flex flex-col gap-2 min-w-[120px] shadow-xl">
+        
+        <div
+          onClick={() => {
+            setActive('skills');
+            setShowMore(false);
+          }}
+          className="text-white text-sm px-3 py-2 rounded-lg hover:bg-white/10"
+        >
+          ⚡ Skills
+        </div>
+
+        <div
+          onClick={() => {
+            setActive('certifications');
+            setShowMore(false);
+          }}
+          className="text-white text-sm px-3 py-2 rounded-lg hover:bg-white/10"
+        >
+          🏆 Certifications
+        </div>
+
+      </div>
+    )}
+  </div>
+
+</div>
     </div>
-  );
+    );
 }
