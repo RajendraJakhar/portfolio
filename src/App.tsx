@@ -49,7 +49,9 @@ export default function App() {
         />
       </div>
 
-      <Sidebar active={active} onChange={setActive} />
+      <div className="hidden md:block">
+        <Sidebar active={active} onChange={setActive} />
+      </div>
 
       <main className="md:pl-64 min-h-screen pb-20">
         <div className="max-w-5xl mx-auto px-8 py-8">
