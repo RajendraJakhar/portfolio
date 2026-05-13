@@ -66,17 +66,16 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
                 View Projects
               </motion.button>
 
-              <motion.a
-                href="/resume.pdf"
-                download
+              <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => alert("Currently building skills and projects — resume coming soon 🚀")}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-black transition-all"
                 style={{ background: 'linear-gradient(135deg,#00f5ff,#00a8cc)', boxShadow: '0 10px 25px rgba(0,245,255,0.2)' }}
               >
                 <Download size={15} />
                 Download Resume
-              </motion.a>
+              </motion.button>
 
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
