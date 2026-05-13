@@ -84,7 +84,7 @@ export default function Projects() {
                   className="p-6 rounded-2xl relative overflow-hidden group"
                   style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${c.border}`, boxShadow: `0 0 20px ${c.glow}` }}
                 >
-                  <div className="absolute top-0 right-0 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-700" style={{ background: c.text, transform: 'translate(30%,-30%)' }} />
+                  <div className="absolute top-0 right-0 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-700 pointer-events-none" style={{ background: c.text, transform: 'translate(30%,-30%)' }} />
                   <div className="flex flex-col lg:flex-row lg:items-start gap-4">
                     <div className="flex-1">
                       <div className="flex flex-wrap items-center gap-2 mb-2">
